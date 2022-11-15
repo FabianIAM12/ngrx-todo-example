@@ -26,6 +26,7 @@ export const todoReducer = createReducer(
   // Add the new todo to the todos array
   on(addTodo, (state, { content }) => ({
     ...state,
+    // -> action :)
     todos: [...state.todos, { id: Date.now().toString(), content: content }],
   })),
   // Remove the todo from the todos array
@@ -34,7 +35,9 @@ export const todoReducer = createReducer(
     todos: state.todos.filter((todo) => todo.id !== id),
   })),
   // Trigger loading the todos
-  on(loadTodos, (state) => ({ ...state, status: 'loading' })),
+  on(loadTodos, (state) => ({
+    ...state, status: 'loading'
+  })),
   // Handle successfully loaded todos
   on(loadTodosSuccess, (state, { todos }) => ({
     ...state,
@@ -49,3 +52,5 @@ export const todoReducer = createReducer(
     status: 'error',
   }))
 );
+
+// no async operation! just pure

@@ -47,6 +47,7 @@ export class TodoEffects {
         switchMap(([action, todos]) => from(this.todoService.saveTodos(todos)))
       ),
     // Most effects dispatch another action, but this one is just a "fire and forget" effect
+    // Doesn't have impact on the state, so fire and forget ;)
     { dispatch: false }
   );
 }
